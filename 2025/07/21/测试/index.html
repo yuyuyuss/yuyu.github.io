@@ -374,21 +374,23 @@
     <article id="comments" lazyload>
       
   <div id="gitalk-container"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#gitalk-container', function() {
-      Fluid.utils.createCssLink('/css/gitalk.css')
-      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
-        var options = Object.assign(
-          {"clientID":"Ov23liIu5rKkpKbPWJ2m","clientSecret":"41dd012bc4e48fd70c9aa34ca44e00c535c01a2c","repo":"yuyuyuss.github.io","owner":"yuyuyuss","admin":["yuyuyuss"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"redirect_uri":"https://yuyuyuss.github.io/callback","proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
-          {
-            id: '7fdd9f99dc0f32350abf475824b3e2ea'
-          }
-        )
-        var gitalk = new Gitalk(options);
-        gitalk.render('gitalk-container');
-      });
+  <script>
+  // 确保页面加载完成后执行
+  document.addEventListener('DOMContentLoaded', function() {
+    var gitalk = new Gitalk({
+      clientID: 'Ov23liIu5rKkpKbPWJ2m',
+      clientSecret: '41dd012bc4e48fd70c9aa34ca44e00c535c01a2c',
+      repo: 'yuyuyuss.github.io',
+      owner: 'yuyuyuss',
+      admin: ['yuyuyuss'],
+      id: location.pathname, // 使用文章路径作为唯一ID
+      distractionFreeMode: false,
+      redirect_uri: 'https://yuyuyuss.github.io/' // 强制使用根路径
     });
-  </script>
+    
+    gitalk.render('gitalk-container');
+  });
+</script>
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
